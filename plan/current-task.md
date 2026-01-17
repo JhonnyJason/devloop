@@ -1,21 +1,30 @@
-# Task 5
-Upgrade Architecture.
+# Task 6
+Implement CLI-UI Controls
 
 ## Details
-Implementing the loop for top-level user decision prompts separation into 3 modules
-- mainprocessmodule -> top level loop
-- userconfigurationmodule -> option for user to configure tgToken and tgChatId
-- taskloopmodule -> the effective Task loop
+Usecases based on decision-chain:
+- "start task execution" -> starts taskloop execution
+- "configure" -> "set telegram-bot-token" -> retrieve and store tgToken
+- "configure" -> "set chat id" -> retrieve and store chatId
+- "configure" -> "check config" -> print relevant config
+- "configure" -> "back" -> back to top-level decision
+- "die!" -> shutdown
 
-Another module was conceived as well: pathmodule
-The idea hear is to manage the paths centrally and not in each module.
+## Relevant modules:
+- mainprocessmodule
+- userconfigurationmodule
+- taskloopmodule
 
 ## Relevant tests:
 - Main manual test in `testing/testing-wd/`
 
 ## SubTasks
-- [x] Create the new modules
-- [x] Move existing code to the relevant
-- [ ] Check integrity of the update
-- [ ] Test the basic UI flow and proceed to the implement the next feature (as a next task) 
-
+- [X] implement shutdown
+- [X] Test shutdown
+- [x] implement user-configuration loop
+- [x] implement configure->back
+- [x] test configure->back
+- [x] implement configure->set tgToken, configure->set tgChatId and configure->check config
+- [ ] test user configuration flows
+- [ ] implement start and cancel taskloop
+- [ ] test start and cancel taskloop

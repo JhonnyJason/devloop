@@ -1,7 +1,7 @@
 # Status
 Phase: Implementating
 Version: v0.1.0
-TaskNr: 5
+TaskNr: 6
 
 ## Current ImplementationState
 Summary of what happened in the current implementation phase.

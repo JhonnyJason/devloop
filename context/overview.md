@@ -7,7 +7,7 @@ For project planning (status, goals, backlog), see `plan/`.
 
 ```
 devloop/
-├── sources/source/       ← CoffeeScript modules live here
+├── sources/source/       ← Modules live here (preferably CoffeeScript, may be JS/TS)
 │   ├── index/
 │   ├── allmodules/
 │   ├── configmodule/
@@ -56,13 +56,13 @@ mainprocessmodule (outer user decision loop)
 |--------|---------|
 | index | Entry point, module init |
 | allmodules | Module aggregator/registry |
-| configmodule | CLI config (name, version) |
+| configmodule | Config management (static + encrypted local config) |
 | cliargumentsmodule | CLI arg parsing via meow |
 | startupmodule | Startup orchestration |
 | mainprocessmodule | Outer user decision loop |
 | pathmodule | Centralized path management |
 | taskloopmodule | Task execution cycle |
-| userconfigurationmodule | User config (tgToken, tgChatId) |
+| userconfigurationmodule | User config UI (sets tgToken, tgChatId via configmodule) |
 | debugmodule | Debug flag configuration |
 | statemodule | Runtime state management |
 | uimodule | CLI user input (enquirer-based) |
