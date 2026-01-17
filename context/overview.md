@@ -1,5 +1,36 @@
 # Overview
 
+This is AI onboarding context - structure, core ideas, conventions, and pointers to other information.
+For project planning (status, goals, backlog), see `plan/`.
+
+## File Structure
+
+```
+devloop/
+├── sources/source/       ← CoffeeScript modules live here
+│   ├── index/
+│   ├── allmodules/
+│   ├── configmodule/
+│   ├── cliargumentsmodule/
+│   ├── startupmodule/
+│   ├── mainprocessmodule/
+│   ├── pathmodule/
+│   ├── taskloopmodule/
+│   ├── userconfigurationmodule/
+│   ├── debugmodule/
+│   ├── statemodule/
+│   └── uimodule/
+├── output/               ← Compiled JS output
+├── context/              ← AI comprehension (this dir)
+├── plan/                 ← Project coordination
+│   ├── status.md         ← Where we are
+│   ├── current-task.md   ← Current task details
+│   ├── features.md       ← Feature list
+│   └── deferred.md       ← Deferred issues
+├── testing/              ← Test infrastructure
+└── toolset/              ← Build system (git submodule)
+```
+
 ## Purpose
 Devloop is a CLI tool for running AI agents autonomously in well-designed task execution workflows. Goal: reduce supervisor workload by minimizing interventions while maximizing transparency and confidence.
 
@@ -11,9 +42,12 @@ index.coffee
     ↓ cliStartup()
 startupmodule
     ↓ extractArguments()
-cliargumentsmodule (meow)
-    ↓ execute(args)
-mainprocessmodule  ← TODO: actual devloop logic
+    ↓ setWorkingDirectory(wd)
+    ↓ execute()
+mainprocessmodule (outer user decision loop)
+    ├─→ taskloopmodule.execute()      ← task execution cycle
+    ├─→ userconfigurationmodule.configure()
+    └─→ exit
 ```
 
 ## Modules
@@ -25,13 +59,22 @@ mainprocessmodule  ← TODO: actual devloop logic
 | configmodule | CLI config (name, version) |
 | cliargumentsmodule | CLI arg parsing via meow |
 | startupmodule | Startup orchestration |
-| mainprocessmodule | Main execution (TODO) |
+| mainprocessmodule | Outer user decision loop |
+| pathmodule | Centralized path management |
+| taskloopmodule | Task execution cycle |
+| userconfigurationmodule | User config (tgToken, tgChatId) |
 | debugmodule | Debug flag configuration |
+| statemodule | Runtime state management |
+| uimodule | CLI user input (enquirer-based) |
 
-## Current State
-- CLI skeleton complete
-- Argument parsing: `--root`/`-r` for working directory
-- Main execution logic not yet implemented
+## Module Testing
 
-## Next Step
-Define what `execute(args)` should actually do - the core devloop behavior.
+Individual modules can be tested in isolation via `testing/module-tests/<module>/`.
+Entry scripts import directly from `output/<module>.js` and exercise specific functions.
+Run with: `node testing/module-tests/<module>/test-<function>.js`
+
+## Project Management Files
+
+Files for planning are maintained in the `plan/` directory.
+For a starting-point read `plan/README.md`.
+
