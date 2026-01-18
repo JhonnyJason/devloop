@@ -4,6 +4,6 @@
 - [x] Storage of State
 - [x] Encrypted storage of sensitive data
 - [ ] CLI-UI controls start devloop + configure (update tgToken, update tgChatId)
-- [ ] Telegram communication from devloop to Telegram Bot
+- [x] Telegram communication from devloop to Telegram Bot
 - [ ] Claude Code Agents task-execution cycle
 

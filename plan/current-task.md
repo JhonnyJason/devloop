@@ -3,7 +3,7 @@ Implement CLI-UI Controls
 
 ## Details
 Usecases based on decision-chain:
-- "start task execution" -> starts taskloop execution
+- "run devloop" -> starts taskloop execution
 - "configure" -> "set telegram-bot-token" -> retrieve and store tgToken
 - "configure" -> "set chat id" -> retrieve and store chatId
 - "configure" -> "check config" -> print relevant config
@@ -25,6 +25,6 @@ Usecases based on decision-chain:
 - [x] implement configure->back
 - [x] test configure->back
 - [x] implement configure->set tgToken, configure->set tgChatId and configure->check config
-- [ ] test user configuration flows
+- [x] test user configuration flows
 - [ ] implement start and cancel taskloop
 - [ ] test start and cancel taskloop
