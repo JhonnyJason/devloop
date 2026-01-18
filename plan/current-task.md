@@ -1,30 +1,31 @@
-# Task 6
-Implement CLI-UI Controls
+# Task 7
+Implement task-execution cycle
 
 ## Details
-Usecases based on decision-chain:
-- "run devloop" -> starts taskloop execution
-- "configure" -> "set telegram-bot-token" -> retrieve and store tgToken
-- "configure" -> "set chat id" -> retrieve and store chatId
-- "configure" -> "check config" -> print relevant config
-- "configure" -> "back" -> back to top-level decision
-- "die!" -> shutdown
+The Taskloop loops through cycles of 3 phases.
+All three phases (find, execute, review) follow the same pattern:
+```
+read prompt file → runClaude(prompt) → handle result
+```
+
+**Prompt files (in working directory):**
+- `ai/prompts/find-next-task.md` → instructs agent to identify next task
+- `ai/next-task.md` → the task itself (output of find, input for execute)
+- `ai/prompts/review-task.md` → instructs agent to review execution
+
+**Package:** `@anthropic-ai/claude-agent-sdk`
 
 ## Relevant modules:
-- mainprocessmodule
-- userconfigurationmodule
 - taskloopmodule
 
 ## Relevant tests:
 - Main manual test in `testing/testing-wd/`
 
 ## SubTasks
-- [X] implement shutdown
-- [X] Test shutdown
-- [x] implement user-configuration loop
-- [x] implement configure->back
-- [x] test configure->back
-- [x] implement configure->set tgToken, configure->set tgChatId and configure->check config
-- [x] test user configuration flows
-- [ ] implement start and cancel taskloop
-- [ ] test start and cancel taskloop
+- [ ] 1. Integrate claude-agent-sdk - import, configure, basic wrapper
+- [ ] 2. Implement `runClaude(prompt)` - execute prompt via SDK, return result
+- [ ] 3. Implement prompt loading - read prompt files from working directory
+- [ ] 4. Wire up phase logic (find, execute, review use their respective prompts)
+- [ ] 5. State transitions - persist state after each phase
+- [ ] 6. Git commit handling - commit after each execution
+- [ ] 7. Intervention detection - check output for intervention requests

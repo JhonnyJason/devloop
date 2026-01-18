@@ -56,13 +56,14 @@ mainprocessmodule (outer user decision loop)
 |--------|---------|
 | index | Entry point, module init |
 | allmodules | Module aggregator/registry |
-| configmodule | Config management (static + encrypted local config) |
+| configmodule | Config management (static + encrypted local config, onChange listeners) |
 | cliargumentsmodule | CLI arg parsing via meow |
 | startupmodule | Startup orchestration |
 | mainprocessmodule | Outer user decision loop |
 | pathmodule | Centralized path management |
-| taskloopmodule | Task execution cycle |
-| userconfigurationmodule | User config UI (sets tgToken, tgChatId via configmodule) |
+| taskloopmodule | Task execution cycle (shell in place, claude execution mocked) |
+| tgmodule | Telegram notifications (send messages via bot API) |
+| userconfigurationmodule | User config UI (tgToken, tgChatId, maxCycles) |
 | debugmodule | Debug flag configuration |
 | statemodule | Runtime state management |
 | uimodule | CLI user input (enquirer-based) |

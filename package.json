@@ -50,6 +50,7 @@
     },
     "homepage": "https://github.com/JhonnyJason/devloop#readme",
     "dependencies": {
+        "@anthropic-ai/claude-agent-sdk": "^0.0.38",
         "coffeescript": "^2.7.0",
         "livescript": "^1.6.0",
         "npm-check-updates": "^19.3.0",
